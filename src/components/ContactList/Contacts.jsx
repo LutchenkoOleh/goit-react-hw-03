@@ -1,6 +1,7 @@
 export default function Contacts({ name, number }) {
   return (
     <li>
-      <p>{name}: {number}</p>
+      <p>{name}</p>
+      <p> {number}</p>
     </li>)
 }

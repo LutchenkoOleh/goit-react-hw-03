@@ -1,8 +1,7 @@
 import "./ContactList.css"
-import contacts from "./contacts.json"
 import Contacts from "./Contacts"
 
-export default function ContactList() {
+export default function ContactList({ contacts }) {
   return (
     <div>
       <ul className="contact-list">
