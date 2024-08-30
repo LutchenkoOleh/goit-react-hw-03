@@ -1,34 +1,62 @@
 import "./ContactForm.css"
 import { useId } from "react";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from "yup";
 
 
-export default function ContactForm({ onNumber }) {
+export default function ContactForm({ onAddContact }) {
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const form = evt.target;
-    const { name, number } = form.elements;
-
-    onNumber({
-      name: name.value,
-      number: number.value,
-    });
-
-    form.reset();
-
-  };
+  const FeedbackSchema = Yup.object().shape({
+    name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required"),
+    number: Yup.string().email("Must be a valid number!").required("Required")
+  });
 
 
 
-  const nameId = useId();
+
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+
+  const initialValues = {
+    name: "",
+    number: ""
+  }
+
+
+  const handleSubmit = (value, actions) => {
+    if (value.name && value.number) {
+      onAddContact({ id: Date.now().toString(), ...value });
+      actions.resetForm();
+
+    }
+  }
+
+
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="name" id={nameId} />
-      <input type="number" name="number" id={nameId} />
-      <button type="submit">Add contact</button>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={FeedbackSchema}>
+      <Form  >
+        <label htmlFor={nameFieldId}>Name</label>
+        <Field
+          type="text"
+          name="name"
+          placeholder="Name"
+          id={nameFieldId}
+        />
+        <label htmlFor={numberFieldId}>Number</label>
+        <Field
+          type="text"
+          name="number"
+          placeholder="Number"
+          id={numberFieldId}
+        />
+        <button type="submit" >Add contact</button>
+      </Form>
+    </Formik >
   );
 
 

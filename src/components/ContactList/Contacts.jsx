@@ -1,7 +1,10 @@
-export default function Contacts({ name, number }) {
+export default function Contacts({ name, number, onDelete }) {
   return (
-    <li>
-      <p>{name}</p>
-      <p> {number}</p>
+    <li className="contact-item">
+      <div className="contact-item-wrap">
+        <p className="contact-text">{name}</p>
+        <p className="contact-text"> {number}</p>
+      </div>
+      <button className="contact-button" onClick={onDelete} >Delete</button>
     </li>)
 }
