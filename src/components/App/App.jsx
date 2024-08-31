@@ -38,8 +38,9 @@ export default function App() {
     setContacts(contacts.filter(contact => contact.id !== id))
 
   const handleAddContact = (newContact) => {
-    setContacts([...contacts, newContact]);
-  }
+    setContacts((prevContacts) => { return [...prevContacts, newContact] })
+  };
+
 
   return (
     <div>

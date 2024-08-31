@@ -1,4 +1,4 @@
-import "./ContactList.css"
+import css from "./ContactList.module.css"
 import Contacts from "./Contacts"
 
 export default function ContactList({ contacts, onDeleteContact }) {
@@ -7,7 +7,7 @@ export default function ContactList({ contacts, onDeleteContact }) {
 
   return (
     <div>
-      <ul className="contact-list">
+      <ul className={css.contactList}>
 
         {contacts.map(contact => (
           <Contacts key={contact.id}

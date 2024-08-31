@@ -1,14 +1,14 @@
-.search-box {
+.searchBox {
   margin-top: 10px;
 
 }
 
-.search-box-text {
+.searchBoxText {
   margin: 0;
 
 }
 
-.search-box-input {
+.searchBoxInput {
   border: 1px solid #111;
   border-radius: 4px;
 }
